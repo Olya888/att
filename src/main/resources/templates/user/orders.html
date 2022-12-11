@@ -1,0 +1,17 @@
+<div lang="en" th:replace="fragments/header :: head('Заказы')"> </div>
+
+<div class="container pt-4">
+    <h3>Заказы</h3>
+    <div th:each="order : ${orders}">
+        <h3 th:text="'Заказ № ' + ${order.getNumber()}"></h3>
+        <img th:src="'/img/' + ${order.getProduct().imageList[0].getFileName()}" width="300px">
+        <p th:text="'Наименование: ' + ${order.getProduct().getTitle()}"></p>
+        <p th:text="'Количество: ' + ${order.getCount()}"></p>
+        <p th:text="'Цена: ' + ${order.getPrice()}"></p>
+        <p th:text="'Дата заказа: ' + ${#temporals.format(order.getDateTime(), 'dd-MMM-yyyy')}"></p>
+        <p th:text="'Статус: ' + ${order.getStatus()}"></p>
+        <hr>
+    </div>
+</div>
+
+<div lang="en" th:replace="fragments/footer :: footer"> </div>
